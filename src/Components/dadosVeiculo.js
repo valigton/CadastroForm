@@ -18,65 +18,88 @@ const style = makeStyles(theme => ({
 }));
 export default function DadosVeiculo(props) {
     const classes = style();
-    const [state, setState] = useState('');
+    const [veiculo, setVeiculo] = useState({
+        marcaVeiculo: '',
+        modeloVeiculo: '',
+        placaVeiculo: '',
+        anoVeiculo: '',
+        fabVeiculo: '',
+        renavamVeiculo: '',
+        chassiVeiculo: '',
+        corVeiculo: '',
+        combustVeiculo: '',
+        kmVeiculo: '',
+        precoVeiculo: '',
+        nomeVendedor: '',
+        emailVendedor: '',
+        telVendedor: '',
+        celVendedor: '',
+        nascVendedor: '',
+        cpfVendedor: '',
+        rgVendedor: '',
+        cepVendedor: '',
+        ruaVendedor: '',
+        numVendedor: '',
+        compVendedor: '',
+        cidVendedor: '',
+        estVendedor: '',
+    });
 
-    function handleChange(e){
-        if (e.target.value !== ''){
-            props.handleChange(state);
-        } else {
-            setState({...state, [e.target.name]: e.target.value});
-        }
+    function handleBlur(event){
+        setVeiculo({...veiculo, [event.target.name]: event.target.value});
     }
+    console.log(veiculo)
+    
     return (
     <Container>
         <Grid container >
             <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="body1">Dados do veículo</Typography>
             <Paper className={classes.paper}>
                 <Grid item >
-                    <TextArea name={"marcaVeiculo"} className={classes.text} type="text" label="Marca" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"modeloVeiculo"} className={classes.text} type="text" label="Modelo" variant="outlined" onChange={handleChange} />
-                    <TextArea name={"placaVeiculo"} className={classes.text} type="text" label="Placa" variant="outlined"onChange={handleChange}/>
+                    <TextArea name={"marcaVeiculo"} value={veiculo.marcaVeiculo} className={classes.text} type="text" label="Marca" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"modeloVeiculo"} value={veiculo.modeloVeiculo} className={classes.text} type="text" label="Modelo" variant="outlined" handleBlur={handleBlur} />
+                    <TextArea name={"placaVeiculo"} value={veiculo.placaVeiculo} className={classes.text} type="text" label="Placa" variant="outlined"handleBlur={handleBlur}/>
                 </Grid>
                 <Grid item >
-                    <TextArea name={"anoVeiculo"} className={classes.text} type="text" label="Ano Modelo" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"fabVeiculo"} className={classes.text} type="text" label="Ano de Fabricação" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"renavamVeiculo"} className={classes.text} type="text" label="Renavam" variant="outlined"onChange={handleChange}/>
+                    <TextArea name={"anoVeiculo"} value={veiculo.anoVeiculo} className={classes.text} type="text" label="Ano Modelo" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"fabVeiculo"} value={veiculo.fabVeiculo} className={classes.text} type="text" label="Ano de Fabricação" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"renavamVeiculo"} value={veiculo.renavamVeiculo} className={classes.text} type="text" label="Renavam" variant="outlined"handleBlur={handleBlur}/>
                 </Grid>
                 <Grid item >
-                    <TextArea name={"chassiVeiculo"} className={classes.text} type="text" label="Chassi" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"corVeiculo"} className={classes.text} type="text" label="Cor" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"combustVeiculo"} className={classes.text} type="text" label="Combustivel" variant="outlined" onChange={handleChange}/>
+                    <TextArea name={"chassiVeiculo"} value={veiculo.chassiVeiculo} className={classes.text} type="text" label="Chassi" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"corVeiculo"} value={veiculo.corVeiculo} className={classes.text} type="text" label="Cor" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"combustVeiculo"} value={veiculo.combustVeiculo} className={classes.text} type="text" label="Combustivel" variant="outlined" handleBlur={handleBlur}/>
                 </Grid>
                 <Grid item >
-                    <TextArea name={"kmVeiculo"} className={classes.text} type="text" label="Kilometragem" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"preçoVeiculo"} className={classes.text} type="text" label="Preço" variant="outlined" onChange={handleChange}/>
+                    <TextArea name={"kmVeiculo"} value={veiculo.kmVeiculo} className={classes.text} type="text" label="Kilometragem" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"precoVeiculo"} value={veiculo.precoVeiculo} className={classes.text} type="text" label="Preço" variant="outlined" handleBlur={handleBlur}/>
                 </Grid>
             </Paper>
             <Typography style={{marginLeft: '20px', marginTop: '10px'}} variant="body1">Dados do Vendedor</Typography>
             <Paper className={classes.paper}>
                 <Grid item >
-                    <TextArea name={"nomeVendedor"} className={classes.text} type="text" label="Nome" variant="outlined"  onChange={handleChange}/>
-                    <TextArea name={"emailVendedor"} className={classes.text} type="email" label="E-mail" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"telVendedor"} className={classes.text} mask="(99)9999-9999" type="tel" label="Telefone" variant="outlined" onChange={handleChange}></TextArea>
+                    <TextArea name={"nomeVendedor"} value={veiculo.nomeVendedor} className={classes.text} type="text" label="Nome" variant="outlined"  handleBlur={handleBlur}/>
+                    <TextArea name={"emailVendedor"} value={veiculo.emailVendedor} className={classes.text} type="email" label="E-mail" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"telVendedor"} value={veiculo.telVendedor} className={classes.text} mask="(99)9999-9999" type="tel" label="Telefone" variant="outlined" handleBlur={handleBlur}></TextArea>
                 </Grid>
                 <Grid item >
-                    <TextArea name={"celVendedor"} className={classes.text} mask="(99)99999-9999" type="tel" label="Celular" variant="outlined"onChange={handleChange}/>
-                    <TextArea name={"telVendedor"} className={classes.text} mask="99/99/9999" type="tel" label="Data de Nascimento" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"cpfVendedor"} className={classes.text} mask="999.999.999-99" type="text" label="CPF" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"rgVendedor"} className={classes.text} mask="99.999.999-*"type="text" label="RG" variant="outlined" onChange={handleChange}/>
+                    <TextArea name={"celVendedor"} value={veiculo.celVendedor} className={classes.text} mask="(99)99999-9999" type="tel" label="Celular" variant="outlined"handleBlur={handleBlur}/>
+                    <TextArea name={"nascVendedor"} value={veiculo.nascVendedor} className={classes.text} mask="99/99/9999" type="tel" label="Data de Nascimento" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"cpfVendedor"} value={veiculo.cpfVendedor} className={classes.text} mask="999.999.999-99" type="text" label="CPF" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"rgVendedor"} value={veiculo.rgVendedor} className={classes.text} mask="99.999.999-*"type="text" label="RG" variant="outlined" handleBlur={handleBlur}/>
                 </Grid>
             </Paper>
             <Typography style={{marginLeft: '20px', marginTop: '10px'}} variant="body1">Endereço</Typography>
             <Paper className={classes.paper}>
                 <Grid item >
-                    <TextArea name={"cepVendedor"} className={classes.text} type="text" label="CEP" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"ruaVendedor"} className={classes.text} type="text" label="Rua" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"numVendedor"} className={classes.text} type="text" label="Numero" variant="outlined" onChange={handleChange}/> 
+                    <TextArea name={"cepVendedor"} value={veiculo.cepVendedor} className={classes.text} type="text" label="CEP" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"ruaVendedor"} value={veiculo.ruaVendedor} className={classes.text} type="text" label="Rua" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"numVendedor"} value={veiculo.numVendedor} className={classes.text} type="text" label="Numero" variant="outlined" handleBlur={handleBlur}/> 
                 </Grid>
                 <Grid item >
-                    <TextArea name={"compVendedor"} className={classes.text} type="text" label="Complemento" variant="outlined" onChange={handleChange}/>
-                    <TextArea name={"cidVendedor"} className={classes.text} type="text" label="Cidade" variant="outlined" onChange={handleChange}/>
-                    <ComboBox name={"estVendedor"}  onChange={handleChange}/>
+                    <TextArea name={"compVendedor"} value={veiculo.compVendedor} className={classes.text} type="text" label="Complemento" variant="outlined" handleBlur={handleBlur}/>
+                    <TextArea name={"cidVendedor"} value={veiculo.cidVendedor} className={classes.text} type="text" label="Cidade" variant="outlined" handleBlur={handleBlur}/>
+                    <ComboBox name={"estVendedor"} value={veiculo.estVendedor} onChange={handleBlur}/>
                 </Grid>
             </Paper>
         </Grid>

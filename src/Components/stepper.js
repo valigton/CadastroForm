@@ -31,14 +31,14 @@ export default function StepperComponent(props) {
   const classes = styles();
   const steps = getSteps();
   const [activeStep, setActiveStep] = useState(0);
-  const [data, setData] = useState(0);
+  const [data, setData] = useState({});
   
   const handleChange = (name,value) => {
     setData({...data,[name]: value });
   }
 
   const handleClick = () => {
-      axios.post('/', data )
+      axios.post('/cadastro', { data } )
       console.log(data)
   }   
 

@@ -17,7 +17,9 @@ export default function TextArea(props) {
   return (
     <TextField 
     {...props}
-    value={state} 
+    value={state}
+    onChange={ (e) => onChange(e) }
+    onBlur={(e)=> props.handleBlur(e)} 
     variant={"outlined"} >
     </TextField>
   );
