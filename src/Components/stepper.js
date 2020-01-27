@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Stepper, Step, StepLabel, Button, Typography } from '@material-ui/core'
-import axios from 'axios'
+import { Stepper, Step, StepLabel, Button } from '@material-ui/core'
 
 import DadosPessoais from './dadosPessoais'
 import DadosVeiculo from './dadosVeiculo'
@@ -31,24 +30,58 @@ export default function StepperComponent(props) {
   const classes = styles();
   const steps = getSteps();
   const [activeStep, setActiveStep] = useState(0);
-  const [data, setData] = useState({});
+  const [data, setData] = useState();
+  const [image, setImage] = useState();
   
-  const handleChange = (name,value) => {
-    setData({...data,[name]: value });
+  //passar os objetos dentro da função de continuar
+  //não precisa concatenar com map
+  //Passar o estado dos componentes filhos para o componente pai, e juntar todos em um objeto só
+  //Separar comprador do vendedor 
+  //Terminar a logica para o formulario de veiculos
+
+
+  /*function handleImage() {
+    const formData = new FormData();
+    formData.append('image', image);
+    axios.post('http://localhost:3000',formData)
+  }*/
+
+  const getData = (state, step) => {
+
+    switch(step){
+      case 'DadosPessoais':
+        setData({...data,
+          cliente: {
+            nome: state.nomeComprador,
+            email: state.emailComprador,
+          }
+        });
+      break;
+    }
   }
-
-  const handleClick = () => {
-      axios.post('/cadastro', { data } )
-      console.log(data)
-  }   
-
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setHandleGetData(true);
+    //setActiveStep(prevActiveStep => prevActiveStep + 1);
+    
+    /*switch (activeStep) {
+      case 1:
+        handleComprador();
+        break;
+      case 2:
+        handleVendedor();
+        break;
+      case 3: 
+        handleImage();
+        break;
+      default:
+    }*/
   };
 
   const handleBack = () => {
     setActiveStep(prevActiveStep => prevActiveStep - 1);
   };
+
+  const [handleGetData , setHandleGetData] = useState(false);
 
   function getSteps() {
     return ['', '', '', ''];
@@ -57,9 +90,9 @@ export default function StepperComponent(props) {
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <DadosPessoais handleChange={handleChange} handleClick={handleClick} />;
+        return <DadosPessoais getData={(state, step) => getData( state, step) } handleGetData={handleGetData}  />;
       case 1:
-        return <DadosVeiculo handleChange={handleChange} handleClick={handleClick} />;
+        return <DadosVeiculo />;
       case 2:
         return <DadosDocumentos />;
       case 3:
@@ -68,6 +101,7 @@ export default function StepperComponent(props) {
     }
   }    
   
+  console.log(data);
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -79,7 +113,7 @@ export default function StepperComponent(props) {
         </Stepper>
         <div>
             <div>
-              <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+              <div className={classes.instructions}>{getStepContent(activeStep)}</div>
               <div className={classes.buttonBox}>
                 <Button
                   size='large'

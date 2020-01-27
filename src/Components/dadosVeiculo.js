@@ -48,8 +48,9 @@ export default function DadosVeiculo(props) {
     function handleBlur(event){
         setVeiculo({...veiculo, [event.target.name]: event.target.value});
     }
-    console.log(veiculo)
     
+
+
     return (
     <Container>
         <Grid container >

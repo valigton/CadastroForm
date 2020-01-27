@@ -28,12 +28,10 @@ const cadStyles = makeStyles(theme => ({
 export default function Cadastro3(){
     const classes = cadStyles();
     return(
-    <>
         <div className={classes.mainBox}>
             <Grid alignItems="center" justify="center" >
                 <Stepper />
             </Grid>
         </div>
-    </>
     );
 }

@@ -30,9 +30,9 @@ const cadStyles = makeStyles(theme => ({
 export default function Laudo(){
     const classes = cadStyles();
     return(
-    <Container fullWidth style={{ backgroundColor:'#d3d3d3d3'}}>
+    <Container style={{ width: '100%',backgroundColor:'#d3d3d3d3'}}>
         <CssBaseline />
-        <Grid container component='div' alignItems="center" justify="center" style={{ minHeight: '95vh', backgroundColor:'#d3d3d3d3'}} >
+        <Grid container alignItems="center" justify="center" style={{ minHeight: '95vh', backgroundColor:'#d3d3d3d3'}} >
             <div className={classes.mainBox}>
                 <Grid item >
                     <Logo />

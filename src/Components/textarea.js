@@ -4,10 +4,9 @@ import { TextField } from '@material-ui/core'
 export default function TextArea(props) {
   const [state, setState] = useState(props.value);
 
-  const onChange = (e) =>{
+  const onChange = (e) => {
     setState(e.target.value);
   }
-
   useEffect(()=>{
     if(props.value !== state){
       setState(props.value);
@@ -16,11 +15,11 @@ export default function TextArea(props) {
 
   return (
     <TextField 
-    {...props}
-    value={state}
-    onChange={ (e) => onChange(e) }
-    onBlur={(e)=> props.handleBlur(e)} 
-    variant={"outlined"} >
+      {...props}
+      value={state}
+      onChange={ (e) => onChange(e) }
+      onBlur={(e)=> props.handleBlur(e)} 
+      variant={"outlined"} >
     </TextField>
   );
 }

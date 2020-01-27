@@ -20,7 +20,7 @@ const style = makeStyles(theme =>({
         width: '100vh'
     },
 }));
-export default function DadosResumo() {
+export default function DadosResumo(props) {
     const classes = style();
     return (
     <Container>
@@ -35,7 +35,7 @@ export default function DadosResumo() {
                 <Grid item >
                     <div className={classes.div}>
                         <p>Nome:</p>
-                        <p>Jorge Henrique</p>
+                        <p>Jorge</p>
                     </div>
                     <div className={classes.div}>
                         <p>E-mail:</p>  

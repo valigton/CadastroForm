@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Grid, Paper, Typography } from '@material-ui/core'
+import React, { useState, useEffect } from 'react';
+import { Container, Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask';
 
@@ -36,15 +36,20 @@ export default function DadosPessoais(props) {
         estComprador: '',
     });
 
+    useEffect(() => {
+        if(props.handleGetData){
+            props.getData(pessoais, 'DadosPessoais');
+        }
+    }, [props.handleGetData]);
+
     function handleBlur(event) {
         setPessoais({...pessoais, [event.target.name]: event.target.value });
     }
-
-    console.log(pessoais);
+    
     return (
         <Container>
             <Grid container >
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="body1">Seus dados</Typography>
+                <p style={{marginLeft: '20px', marginTop: '10px'}}>Seus dados</p>
                 <Paper className={classes.paper}>
                 <Grid item >
                     <TextArea name="nomeComprador"  value={pessoais.nomeComprador} className={classes.text} type="text" label="Nome" handleBlur={handleBlur}/>
@@ -58,12 +63,12 @@ export default function DadosPessoais(props) {
                     <InputMask name="rgComprador" value={pessoais.rgComprador} className={classes.text} mask="99.999.999-*"type="text" label="RG"  handleBlur={handleBlur}>{ (inputProps)=> <TextArea {...inputProps} />}</InputMask>
                 </Grid>
                 </Paper>
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}} variant="body1">Endereço</Typography>
+                <p style={{marginLeft: '20px', marginTop: '10px'}} >Endereço</p>
                 <Paper className={classes.paper}>
                     <Grid item >
                         <InputMask name="cepComprador" value={pessoais.cepComprador} className={classes.text} mask="99999-999" type="text" label="CEP"  handleBlur={handleBlur}>{ (inputProps)=> <TextArea {...inputProps} />}</InputMask>
                         <TextArea name="ruaComprador" value={pessoais.ruaComprador} className={classes.text} type="text" label="Rua"  handleBlur={handleBlur}/>
-                        <TextArea name="numComprador" value={pessoais.numComprador} className={classes.text} mask="99999" type="number" label="Numero"  handleBlur={handleBlur}/> 
+                        <TextArea name="numComprador" value={pessoais.numComprador} className={classes.text} mask="99999" type="text" label="Numero"  handleBlur={handleBlur}/> 
                     </Grid>
                     <Grid item >
                         <TextArea name="compComprador" value={pessoais.compComprador} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>

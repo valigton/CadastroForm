@@ -118,7 +118,7 @@ export default function Login(){
     }
     
     return(
-    <Grid container maxWidth='lg'>
+    <Grid maxWidth='lg'>
         <div className={classes.boxOutside}>
             <div className={classes.boxInside}>
                 <Grid className={classes.root} container >
