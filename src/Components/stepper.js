@@ -2,10 +2,11 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Stepper, Step, StepLabel, Button } from '@material-ui/core'
 
-import DadosPessoais from './dadosPessoais'
+import DadosFisica from './DadosFisica'
 import DadosVeiculo from './dadosVeiculo'
 import DadosDocumentos from './dadosDocumentos'
 import DadosResumo from './dadosResumo'
+import SwitchComponent from './SwitchComponent'
 
 const styles = makeStyles(theme => ({
     root: {
@@ -49,32 +50,20 @@ export default function StepperComponent(props) {
   const getData = (state, step) => {
 
     switch(step){
-      case 'DadosPessoais':
+      case 'DadosFisica':
         setData({...data,
           cliente: {
             nome: state.nomeComprador,
             email: state.emailComprador,
+            tel: state.telComprador,
           }
         });
       break;
     }
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   }
   const handleNext = () => {
     setHandleGetData(true);
-    //setActiveStep(prevActiveStep => prevActiveStep + 1);
-    
-    /*switch (activeStep) {
-      case 1:
-        handleComprador();
-        break;
-      case 2:
-        handleVendedor();
-        break;
-      case 3: 
-        handleImage();
-        break;
-      default:
-    }*/
   };
 
   const handleBack = () => {
@@ -90,7 +79,7 @@ export default function StepperComponent(props) {
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
-        return <DadosPessoais getData={(state, step) => getData( state, step) } handleGetData={handleGetData}  />;
+        return <SwitchComponent />; //<DadosFisica getData={(state, step) => getData( state, step) } handleGetData={handleGetData} />;
       case 1:
         return <DadosVeiculo />;
       case 2:
