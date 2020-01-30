@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Paper, Typography } from '@material-ui/core'
+import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const style = makeStyles(theme =>({
@@ -7,11 +7,16 @@ const style = makeStyles(theme =>({
         backgroundColor: '#ffffff',
         margin: '10px',
     },
+    main: {
+        justifyContent: 'center',
+    },
     paper: {
         backgroundColor: '#dddd',
         display: 'flex',
         margin: '5px',
         padding: '40px',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     box: {
         backgroundColor: '#ffff',
@@ -27,9 +32,9 @@ const style = makeStyles(theme =>({
 export default function DadosPessoais() {
     const classes = style();
     return (
-    <Container>
-        <Grid container justify='center'>
-            <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="body1">Documentos</Typography>
+        <>
+        <p style={{marginLeft: '100px', marginTop: '10px'}}>Documentos</p>
+        <Grid container className={classes.main}>
             <Paper className={classes.paper}>
                 <Grid item >
                     <div className={classes.box}>
@@ -48,6 +53,6 @@ export default function DadosPessoais() {
                 </Grid>
             </Paper>
         </Grid>
-    </Container>
+        </>
     );
 }

@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Stepper, Step, StepLabel, Button } from '@material-ui/core'
 
-import DadosFisica from './DadosFisica'
 import DadosVeiculo from './dadosVeiculo'
 import DadosDocumentos from './dadosDocumentos'
-import DadosResumo from './dadosResumo'
-import SwitchComponent from './SwitchComponent'
+import SwitchCadastro from './SwitchCadastro'
+import DadosVendedor from './DadosVendedor'
+import SwitchPagamento from './SwitchPagamento'
 
 const styles = makeStyles(theme => ({
     root: {
@@ -60,10 +60,11 @@ export default function StepperComponent(props) {
         });
       break;
     }
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    //setActiveStep(prevActiveStep => prevActiveStep + 1);
   }
   const handleNext = () => {
     setHandleGetData(true);
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
   const handleBack = () => {
@@ -73,19 +74,22 @@ export default function StepperComponent(props) {
   const [handleGetData , setHandleGetData] = useState(false);
 
   function getSteps() {
-    return ['', '', '', ''];
+    return ['', '', '', '', ''];
   }
 
   function getStepContent(stepIndex) {
+    stepIndex = 4
     switch (stepIndex) {
       case 0:
-        return <SwitchComponent />; //<DadosFisica getData={(state, step) => getData( state, step) } handleGetData={handleGetData} />;
+        return <SwitchCadastro />; //<DadosFisica getData={(state, step) => getData( state, step) } handleGetData={handleGetData} />;
       case 1:
         return <DadosVeiculo />;
       case 2:
-        return <DadosDocumentos />;
+        return <DadosVendedor />;
       case 3:
-        return <DadosResumo />;
+        return <DadosDocumentos />;
+      case 4: 
+        return <SwitchPagamento />;
       default:
     }
   }    
