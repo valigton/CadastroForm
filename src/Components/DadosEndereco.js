@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+/*import React, { useEffect, useState} from 'react';
 import { Container, Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import InputMask from 'react-input-mask';
@@ -21,11 +21,11 @@ const style = makeStyles(theme =>({
 export default function DadosEndereco(props){
 	const classes = style();
      const [endereco, setEndereco] = useState({
-        ruaComprador: '',
-        numComprador: '',
-        compComprador: '',
-        cidComprador: '',
-        estComprador: '',
+        ruaEndereco: '',
+        numEndereco: '',
+        complementoEndereco: '',
+        cidadeEndereco: '',
+        estadoEndereco: '',
     });
 
     useEffect(() => {
@@ -44,16 +44,16 @@ export default function DadosEndereco(props){
                 <Paper className={classes.paper}>
                     <Grid item >
                         <InputMask name="cepComprador" value={endereco.cepComprador} className={classes.text} mask="99999-999" type="text" label="CEP"  handleBlur={handleBlur}>{ (inputProps)=> <TextArea {...inputProps} />}</InputMask>
-                        <TextArea name="ruaComprador" value={endereco.ruaComprador} className={classes.text} type="text" label="Rua"  handleBlur={handleBlur}/>
-                        <TextArea name="numComprador" value={endereco.numComprador} className={classes.text} mask="99999" type="text" label="Numero"  handleBlur={handleBlur}/> 
+                        <TextArea name="ruaEndereco" value={endereco.ruaEndereco} className={classes.text} type="text" label="Rua"  handleBlur={handleBlur}/>
+                        <TextArea name="numEndereco" value={endereco.numEndereco} className={classes.text} mask="99999" type="text" label="Numero"  handleBlur={handleBlur}/> 
                     </Grid>
                     <Grid item >
-                        <TextArea name="compComprador" value={endereco.compComprador} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>
-                        <TextArea name="cidComprador" value={endereco.cidComprador} className={classes.text} type="text" label="Cidade"  handleBlur={handleBlur}/>
-                        <ComboBox name="estComprador" value={endereco.estComprador} className={classes.text} handleBlur={handleBlur}/>
+                        <TextArea name="complementoEnredeco" value={endereco.complementoEnredeco} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>
+                        <TextArea name="cidadeEndereco" value={endereco.cidadeEndereco} className={classes.text} type="text" label="Cidade"  handleBlur={handleBlur}/>
+                        <ComboBox name="estadoEndereco" value={endereco.estadoEndereco} className={classes.text} handleBlur={handleBlur}/>
                     </Grid>
                 </Paper>
 			</Grid>
 		</Container>
 	);
-}
+}*/

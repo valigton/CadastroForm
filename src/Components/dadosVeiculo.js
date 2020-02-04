@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -29,6 +29,12 @@ export default function DadosVeiculo(props) {
         corVeiculo: '',
         precoVeiculo: '',
     });
+
+    useEffect(() => {
+        if(props.handleGetData){
+            props.getData(veiculo, 'DadosVeiculo');
+        }
+    }, [props.handleGetData]);
 
     function handleBlur(event){
         setVeiculo({...veiculo, [event.target.name]: event.target.value});

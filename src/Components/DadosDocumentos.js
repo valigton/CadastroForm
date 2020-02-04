@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -29,8 +29,17 @@ const style = makeStyles(theme =>({
         textAlign: 'center'
     }
 }));
-export default function DadosPessoais() {
+export default function DadosDocumentos(props) {
     const classes = style();
+     const [documentos, setDocumentos] = useState({
+        
+    });
+    useEffect(() => {
+        if(props.handleGetData){
+            props.getData(documentos, 'DadosDocumentos');
+        }
+    }, [props.handleGetData]);
+
     return (
         <>
         <p style={{marginLeft: '100px', marginTop: '10px'}}>Documentos</p>

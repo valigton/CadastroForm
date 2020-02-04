@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid, Link, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
@@ -21,15 +21,19 @@ const cadStyles = makeStyles(theme => ({
 
 export default function Cadastro2(props){
     const classes = cadStyles();
+    const [cod, setCod] = useState('');
     const handleClick = () => {
         props.nextPage(2)
+    }
+    const handleBlur = (e) => {
+        setCod({...cod, [e.target.name]: e.target.value });
     }
     return(
         <div className={classes.textBox}>
             <Grid item >
                 <div className={classes.textBox}>
-                    <h5  className={classes.textPadding}>Você já possui um código de transação MotoPay?</h5>
-                    <p variant="body2" className={classes.textPadding}>O código de transação motopay serve para você entrar em uma negociação já existente. Se você está criando uma nova transação <Link href={'#'} component="button" >clique aqui</Link>.</p>
+                    <h5 className={classes.textPadding}>Você já possui um código de transação MotoPay?</h5>
+                    <p className={classes.textPadding}>O código de transação motopay serve para você entrar em uma negociação já existente. Se você está criando uma nova transação <Link href={'#'} component="button" >clique aqui</Link>.</p>
                 </div>
             </Grid>
             <Grid item >
@@ -38,6 +42,7 @@ export default function Cadastro2(props){
                     label="Código de transação Motopay" 
                     variant="outlined" 
                     style={{ marginBottom: 10, width: '360px' }}
+                    handleBlur={handleBlur}
                 />
                 <Button size="large" name={props.page} onClick={handleClick} variant="outlined"  style={{height: 56, backgroundColor: '#dddd'}}>Continuar</Button>
             </Grid>

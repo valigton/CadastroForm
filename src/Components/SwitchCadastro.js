@@ -20,42 +20,34 @@ const style = makeStyles(theme =>({
     },
 }));
 
- /*useEffect(() => {
-        if(props.handleGetData){
-            props.getData(fisica, 'DadosPessoais');
-        }
-    }, [props.handleGetData]);
 
-    function handleBlur(event) {
-        setFisica({...fisica, [event.target.name]: event.target.value });
-    }*/
-
-export default function SwitchCadastro(){
+export default function SwitchCadastro(props){
 	const classes = style();
-	const [value, setValue] = React.useState('fisica');
-  	const handleChange = event => {
+	const [value, setValue] = React.useState(props.data.tipoPessoa);
+
+  	const handleChange = event => {  //Função que recebe 
     	setValue(event.target.value);
   	};
 
+  	//Função que troca no formulario de cadastro do comprador de pessoa fisica para pessoa juridica
   	function TrocaDados(props) {
   		switch(props.value) {
   			case 'fisica':
-  				return <DadosFisica />
-  				break;
+  				return <DadosFisica  data={props.data} Validate={props.Validate} getData={props.getData} handleGetData={props.handleGetData}/>;
+  				
   			case 'juridica':
-  				return <DadosJuridica />
-  				break;
+  				return <DadosJuridica  all={props.all} Validate={props.Validate} getData={props.getData} handleGetData={props.handleGetData} />;
+  			
   			default: 
   		}
   	}
-
 	return(
 	    <Grid container>
 	    	<Grid item>
 	        	<Container>
 				    <FormControl component="fieldset">
 				     <FormLabel component="legend">Eu sou: </FormLabel>
-				      <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
+				     <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
 				        <FormControlLabel
 				          value="fisica"
 				          control={<Radio color="primary" />}
@@ -68,19 +60,14 @@ export default function SwitchCadastro(){
 				          label="Pessoa Juridica"
 				          labelPlacement="end"
 				        />
-				      </RadioGroup>
+				    </RadioGroup>
 				    </FormControl>
 			    </Container>
 		    </Grid>
 		    <Grid item>
 		    	<div>
-		    		<TrocaDados value={value} />
+		    		<TrocaDados value={value} data={props.data} Validate={props.Validate} getAll={props.getAll} handleGetData={props.handleGetData} />
 		    	</div>
-		    </Grid>
-		    <Grid item> 
-		    	<div>
-	            	<DadosEndereco />
-	            </div>
 		    </Grid>
 	    </Grid>
 	);

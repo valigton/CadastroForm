@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Grid, Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import InputMask from 'react-input-mask';
+
 
 import TextArea from './textarea';
 import ComboBox from './combobox'
-import DadosEndereco from './DadosEndereco'
+
 
 const style = makeStyles(theme => ({
     text: {
@@ -34,6 +36,12 @@ export default function DadosVendedor(props) {
         estVendedor: '',
     });
 
+    useEffect(() => {
+        if(props.handleGetData){
+            props.getData(vendedor, 'DadosVendedor');
+        }
+    }, [props.handleGetData]);
+
     function handleBlur(event){
         setVendedor({...vendedor, [event.target.name]: event.target.value});
     }
@@ -57,7 +65,23 @@ export default function DadosVendedor(props) {
                 </Paper>
             </Grid>
             </Container>
-        <DadosEndereco />
+            <Container>
+            <Grid container>
+                  <p style={{marginLeft: '20px', marginTop: '10px'}} >Endereço</p>
+                <Paper className={classes.paper}>
+                    <Grid item >
+                        <InputMask name="cepVendedor" value={vendedor.cepComprador} className={classes.text} mask="99999-999" type="text" label="CEP"  handleBlur={handleBlur}>{ (inputProps)=> <TextArea {...inputProps} />}</InputMask>
+                        <TextArea name="ruaVendedor" value={vendedor.ruaEndereco} className={classes.text} type="text" label="Rua"  handleBlur={handleBlur}/>
+                        <TextArea name="numVendedor" value={vendedor.numEndereco} className={classes.text} mask="99999" type="text" label="Numero"  handleBlur={handleBlur}/> 
+                    </Grid>
+                    <Grid item >
+                        <TextArea name="compVendedor" value={vendedor.complementoEnredeco} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>
+                        <TextArea name="cidVendedor" value={vendedor.cidadeEndereco} className={classes.text} type="text" label="Cidade"  handleBlur={handleBlur}/>
+                        <ComboBox name="estVendedor" value={vendedor.estadoEndereco} className={classes.text} handleBlur={handleBlur}/>
+                    </Grid>
+                </Paper>
+            </Grid>
+        </Container>
         </>
     );
 }

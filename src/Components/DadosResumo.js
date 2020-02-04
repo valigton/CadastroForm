@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Grid, Paper, Typography } from '@material-ui/core'
+import { Container, Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 const style = makeStyles(theme =>({
@@ -22,137 +22,132 @@ const style = makeStyles(theme =>({
 }));
 export default function DadosResumo(props) {
     const classes = style();
+    let data = '' 
     return (
     <Container>
-        <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Resumo</Typography>
+        <h6 style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Resumo</h6>
         <Grid container justify='center'>
             <Paper className={classes.paper}>
-            <Paper>
             <div>
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Comprador</Typography>
+                <h6 style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Comprador</h6>
             </div>
             <div className={classes.formDiv}>
                 <Grid item >
                     <div className={classes.div}>
                         <p>Nome:</p>
-                        <p>Jorge</p>
+                        <p>{data.nomeComprador}</p>
                     </div>
                     <div className={classes.div}>
                         <p>E-mail:</p>  
-                        <p>teste@teste</p>
+                        <p>{data.emailComprador}</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>CPF:</p>
-                        <p>192.444.875-09</p>
+                        <p>{data.cpfComprador}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Telefone:</p>
-                        <p>(11) 2222-2222</p>
+                        <p>{data.telComprador}</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>RG:</p>
-                        <p>48.142.888-1</p>
+                        <p>N/A</p>
                     </div>
                     <div className={classes.div}>
                         <p>Celular:</p>
-                        <p>(11) 2222-2222</p>
+                        <p>{data.celComprador}</p>
                     </div>
                 </Grid>
             </div>
-            </Paper>
-            <Paper>
             <div>
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Vendedor</Typography>
+                <h6 style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Vendedor</h6>
             </div>
             <div className={classes.formDiv}>
                 <Grid item >
                     <div className={classes.div}>
                         <p>Nome:</p>
-                        <p>Jorge Henrique</p>
+                        <p>{data.nomeVendedor}</p>
                     </div>
                     <div className={classes.div}>
                         <p>E-mail:</p>  
-                        <p>teste@teste</p>
+                        <p>{data.emailVendedor}</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>CPF:</p>
-                        <p>192.444.875-09</p>
+                        <p>{data.cpfVendedor}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Telefone:</p>
-                        <p>(11) 2222-2222</p>
+                        <p>{data.telVendedor}</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>RG:</p>
-                        <p>48.142.888-1</p>
+                        <p>N/A</p>
                     </div>
                     <div className={classes.div}>
                         <p>Celular:</p>
-                        <p>(11) 2222-2222</p>
+                        <p>{data.celVendedor}</p>
                     </div>
                 </Grid>
             </div>
-            </Paper>
-            <Paper>
             <div>
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Veículo</Typography>
+                <h6 style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Veículo</h6>
             </div>
             <div className={classes.formDiv}>
                 <Grid item >
                     <div className={classes.div}>
                         <p>Marca:</p>
-                        <p>Honda</p>
+                        <p>{data.marcaVeiculo}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Renavam:</p>  
-                        <p>124521512</p>
+                        <p>{data.renavamVeiculo}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Combustivel:</p>  
-                        <p>Gasolina</p>
+                        <p>N/A</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>Modelo:</p>
-                        <p>Transalp</p>
+                        <p>{data.modeloVeiculo}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Chassi:</p>
-                        <p>412124124</p>
+                        <p>{data.chassiVeiculo}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Cilindradas:</p>
-                        <p>600</p>
+                        <p>N/A</p>
                     </div>
                 </Grid>
                 <Grid item >
                     <div className={classes.div}>
                         <p>Placa:</p>
-                        <p>TTT-2233</p>
+                        <p>{data.placaVeiculo}</p>
                     </div>
                     <div className={classes.div}>
                         <p>Cor:</p>
-                        <p>Preto</p>
+                        <p>{data.corVeiculo}</p>
                     </div>
                 </Grid>
             </div>
-            </Paper>
             <div>
-                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="h6">Laudo</Typography>
+                <h6 style={{marginLeft: '20px', marginTop: '10px'}}>Laudo</h6>
             </div>
             <div className={classes.formDiv}>
                 <Grid item >
                     <div className={classes.div}>
-                        <p>R$350,00</p>
+                        <p>{data.precoVeiculo}</p>
                     </div>
                 </Grid>
             </div>

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Stepper, Step, StepLabel, Button } from '@material-ui/core'
 
 import DadosVeiculo from './dadosVeiculo'
-import DadosDocumentos from './dadosDocumentos'
+import DadosDocumentos from './DadosDocumentos'
 import SwitchCadastro from './SwitchCadastro'
 import DadosVendedor from './DadosVendedor'
 import SwitchPagamento from './SwitchPagamento'
@@ -31,70 +31,45 @@ export default function StepperComponent(props) {
   const classes = styles();
   const steps = getSteps();
   const [activeStep, setActiveStep] = useState(0);
-  const [data, setData] = useState();
-  const [image, setImage] = useState();
-  
-  //passar os objetos dentro da função de continuar
-  //não precisa concatenar com map
-  //Passar o estado dos componentes filhos para o componente pai, e juntar todos em um objeto só
-  //Separar comprador do vendedor 
-  //Terminar a logica para o formulario de veiculos
-
-
-  /*function handleImage() {
-    const formData = new FormData();
-    formData.append('image', image);
-    axios.post('http://localhost:3000',formData)
-  }*/
-
-  const getData = (state, step) => {
-
-    switch(step){
-      case 'DadosFisica':
-        setData({...data,
-          cliente: {
-            nome: state.nomeComprador,
-            email: state.emailComprador,
-            tel: state.telComprador,
-          }
-        });
-      break;
-    }
-    //setActiveStep(prevActiveStep => prevActiveStep + 1);
-  }
-  const handleNext = () => {
-    setHandleGetData(true);
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
+  const [data, setData] = useState(props.data);
   const [handleGetData , setHandleGetData] = useState(false);
+
+  const Validate = () => {
+    //setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setHandleGetData(false);
+  }
 
   function getSteps() {
     return ['', '', '', '', ''];
   }
-
+  
   function getStepContent(stepIndex) {
-    stepIndex = 4
+
     switch (stepIndex) {
       case 0:
-        return <SwitchCadastro />; //<DadosFisica getData={(state, step) => getData( state, step) } handleGetData={handleGetData} />;
+        return <SwitchCadastro data={data} getAll={props.getAll} Validate={Validate} handleGetData={handleGetData} />;
       case 1:
-        return <DadosVeiculo />;
+        return <DadosVeiculo getAll={props.getAll} Validate={Validate} handleGetData={handleGetData} />;
       case 2:
-        return <DadosVendedor />;
+        return <DadosVendedor getAll={props.getAll} Validate={Validate} handleGetData={handleGetData} />;
       case 3:
-        return <DadosDocumentos />;
+        return <DadosDocumentos getAll={props.getAll} Validate={Validate} handleGetData={handleGetData} />;
       case 4: 
-        return <SwitchPagamento />;
+        return <SwitchPagamento getAll={props.getAll} Validate={Validate} handleGetData={handleGetData} />;     
       default:
     }
   }    
-  
-  console.log(data);
+
+  const handleNext = (e) => {
+     e.preventDefault();
+    setHandleGetData(true);
+  }
+
+  const handleBack = (e) => {
+    e.preventDefault();
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
     return (
       <div className={classes.root}>
         <Stepper activeStep={activeStep} alternativeLabel>
@@ -113,14 +88,15 @@ export default function StepperComponent(props) {
                   onClick={handleBack}
                   style={{backgroundColor: '#d3d3d3', marginBottom: '10px', color:'#333', marginRight: '5px', width: '50vh', marginTop: '10px' }}
                   className={classes.backButton}
-                >Back
+                  disabled={activeStep === 0}
+                >Voltar
                 </Button>
                 <Button 
                   variant="contained" 
                   style={{backgroundColor: '#2196f3', margin: '10px', color:'#ffffff', width: '50vh'}} 
                   name={props.name}
                   onClick={handleNext}>
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  {activeStep === steps.length - 1 ? 'Finalizar' : 'Proximo'}
                 </Button>
               </div>
             </div>

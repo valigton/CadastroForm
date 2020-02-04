@@ -62,7 +62,7 @@ function LinkTab(props) {
   );
 }
 
-export default function SwitchPagamento() {
+export default function SwitchPagamento(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -73,11 +73,11 @@ export default function SwitchPagamento() {
   function TrocaComponente(props){
     switch (props.value){
       case 0:
-        return <Boleto />
-        break;
+        return <Boleto />;
+  
       case 1:
-        return <Cartao />
-        break;
+        return <Cartao getData={props.getData} handleGetData={props.handleGetData} />;
+        
       default:
     }
   }
@@ -125,7 +125,7 @@ export default function SwitchPagamento() {
             </Tabs>
           </AppBar>
           <TabPanel value={value} index={value}>
-              <TrocaComponente value={value} />
+              <TrocaComponente value={value} getData={props.getData} handleGetData={props.handleGetData}/>
           </TabPanel>
         </Grid>     
         </div>

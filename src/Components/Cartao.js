@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cards from 'react-credit-cards';
 import { Container, TextField } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import 'react-credit-cards/es/styles-compiled.css';
 
+import TextArea from './textarea'
 
 const styles = makeStyles(theme => ({
   box: {
@@ -37,7 +38,7 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-export default function Cartao(){
+export default function Cartao(props){
   const classes = styles(); 
   const [cartao, setCartao] = useState({
     cvc: '',
@@ -47,11 +48,17 @@ export default function Cartao(){
     number: '',
   });
 
+  useEffect(() => {
+    if(props.handleGetData){
+        props.getData(cartao, 'Cartao');
+    }
+  }, [props.handleGetData]);
+
   const handleInputFocus = (e) => {
     setCartao({...cartao, focus: e.target.name});
   }
 
-  const handleInputChange = (e) => {
+  const handleBlur = (e) => {
     setCartao({...cartao, [e.target.name]: e.target.value })
   }
 
@@ -72,13 +79,13 @@ export default function Cartao(){
           />
         </div>
         <form className={classes.form}>
-          <TextField
+          <TextArea
             className={classes.text}
             type={"tel"}
             name={"number"}
             placeholder={"Numero do Cartão"}
             value={cartao.number}
-            onChange={handleInputChange}
+            handleBlur={handleBlur}
             onFocus={handleInputFocus}
             variant={"outlined"}
           />
@@ -88,7 +95,7 @@ export default function Cartao(){
             name={"name"}
             placeholder={"Titular do Cartão"}
             value={cartao.name}
-            onChange={handleInputChange}
+            handleBlur={handleBlur}
             onFocus={handleInputFocus}
             variant={"outlined"}
           />
@@ -99,7 +106,7 @@ export default function Cartao(){
               name={"cvc"}
               placeholder={"CVC"}
               value={cartao.cvc}
-              onChange={handleInputChange}
+              handleBlur={handleBlur}
               onFocus={handleInputFocus}
               variant={"outlined"}
             />
@@ -109,7 +116,7 @@ export default function Cartao(){
               name={"expiry"}
               placeholder={"Vencimento"}
               value={cartao.expiry}
-              onChange={handleInputChange}
+              handleBlur={handleBlur}
               onFocus={handleInputFocus}
               variant={"outlined"}
             />
@@ -120,7 +127,7 @@ export default function Cartao(){
             name={"portion"}
             placeholder={"Parcela"}
             value={cartao.portion}
-            onChange={handleInputChange}
+            handleBlur={handleBlur}
             onFocus={handleInputFocus}
             variant={"outlined"}
           />
