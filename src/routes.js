@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Login from './Components/login';
 import Main from './Components/main';
+import File from './filepond'
 
 export default function Routes() {
     return (
@@ -10,7 +11,7 @@ export default function Routes() {
         <Switch>
           <Route path="/" exact component={Login} />
           <Route path="/cadastro" exact component={Main} />
-        </Switch>
+         </Switch>
       </BrowserRouter>  
     );
 }

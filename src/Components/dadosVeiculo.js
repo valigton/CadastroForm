@@ -18,50 +18,40 @@ const style = makeStyles(theme => ({
 }));
 export default function DadosVeiculo(props) {
     const classes = style();
-    const [veiculo, setVeiculo] = useState({
-        marcaVeiculo: '',
-        modeloVeiculo: '',
-        placaVeiculo: '',
-        anoVeiculo: '',
-        fabVeiculo: '',
-        renavamVeiculo: '',
-        chassiVeiculo: '',
-        corVeiculo: '',
-        precoVeiculo: '',
-    });
+    const [veiculo, setVeiculo] = useState(props.data.veiculo);
 
     useEffect(() => {
         if(props.handleGetData){
-            props.getData(veiculo, 'DadosVeiculo');
+            props.getAll(veiculo, 3);
         }
     }, [props.handleGetData]);
 
     function handleBlur(event){
         setVeiculo({...veiculo, [event.target.name]: event.target.value});
     }
-    
+
     return (
-    <Container>
-        <Grid container >
-            <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="body1">Dados do veículo</Typography>
-            <Paper className={classes.paper}>
-                <Grid item >
-                    <TextArea name={"marcaVeiculo"} value={veiculo.marcaVeiculo} className={classes.text} type="text" label="Marca" variant="outlined" handleBlur={handleBlur}/>
-                    <TextArea name={"modeloVeiculo"} value={veiculo.modeloVeiculo} className={classes.text} type="text" label="Modelo" variant="outlined" handleBlur={handleBlur} />
-                    <TextArea name={"placaVeiculo"} value={veiculo.placaVeiculo} className={classes.text} type="text" label="Placa" variant="outlined"handleBlur={handleBlur}/>
-                </Grid>
-                <Grid item >
-                    <TextArea name={"anoVeiculo"} value={veiculo.anoVeiculo} className={classes.text} type="text" label="Ano Modelo" variant="outlined" handleBlur={handleBlur}/>
-                    <TextArea name={"fabVeiculo"} value={veiculo.fabVeiculo} className={classes.text} type="text" label="Ano de Fabricação" variant="outlined" handleBlur={handleBlur}/>
-                    <TextArea name={"renavamVeiculo"} value={veiculo.renavamVeiculo} className={classes.text} type="text" label="Renavam" variant="outlined"handleBlur={handleBlur}/>
-                </Grid>
-                <Grid item >
-                    <TextArea name={"chassiVeiculo"} value={veiculo.chassiVeiculo} className={classes.text} type="text" label="Chassi" variant="outlined" handleBlur={handleBlur}/>
-                    <TextArea name={"corVeiculo"} value={veiculo.corVeiculo} className={classes.text} type="text" label="Cor" variant="outlined" handleBlur={handleBlur}/>
-                    <TextArea name={"precoVeiculo"} value={veiculo.precoVeiculo} className={classes.text} type="text" label="Preço" variant="outlined" handleBlur={handleBlur}/>
-                </Grid>
-            </Paper>
-        </Grid>
-    </Container>
+        <Container>
+            <Grid container >
+                <Typography style={{marginLeft: '20px', marginTop: '10px'}}variant="body1">Dados do veículo</Typography>
+                <Paper className={classes.paper}>
+                    <Grid item >
+                        <TextArea name="marca" value={veiculo.marca} className={classes.text} type="text" label="Marca" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="modelo" value={veiculo.modelo} className={classes.text} type="text" label="Modelo" variant="outlined" handleBlur={handleBlur} />
+                        <TextArea name="placa" mask="aaaa-999" value={veiculo.placa} className={classes.text} type="text" label="Placa" variant="outlined"handleBlur={handleBlur}/>
+                    </Grid>
+                    <Grid item >
+                        <TextArea name="ano" mask="9999" value={veiculo.ano} className={classes.text} type="text" label="Ano Modelo" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="fabricacao" mask="9999" value={veiculo.fabricacao} className={classes.text} type="text" label="Ano de Fabricação" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="renavam" mask="999999999" value={veiculo.renavam} className={classes.text} type="text" label="Renavam" variant="outlined"handleBlur={handleBlur}/>
+                    </Grid>
+                    <Grid item >
+                        <TextArea name="chassi" mask="*****************" value={veiculo.chassi} className={classes.text} type="text" label="Chassi" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="cor" value={veiculo.cor} className={classes.text} type="text" label="Cor" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="preco" value={veiculo.preco} className={classes.text} type="text" label="Preço" variant="outlined" handleBlur={handleBlur}/>
+                    </Grid>
+                </Paper>
+            </Grid>
+        </Container>
     );
 }

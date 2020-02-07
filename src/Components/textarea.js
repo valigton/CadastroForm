@@ -34,7 +34,7 @@ export default function TextArea(props) {
             {...props}
             value={state}
             onChange={ (e) => onChange(e) }
-            onBlur={(e)=> props.handleBlur(e)}
+            onBlur={ (e)=> props.handleBlur(e) }
             variant={"outlined"} 
           />
         )

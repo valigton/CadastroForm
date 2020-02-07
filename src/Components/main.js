@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles'
 import { Container, CssBaseline, Grid } from '@material-ui/core'
 
@@ -28,7 +28,6 @@ export default function Main() {
     let count = 0;
     const [page, setPage] = useState(<Cadastro page={count} nextPage={nextPage}/>);
     const [data, setData] = useState({
-        tipoPessoa: 'fisica',
         cliente: {
             nome: '',
             email: '',
@@ -40,38 +39,68 @@ export default function Main() {
             numero: '',
             complemento: '',
             cidade: '',
+        },
+        juridica: {
+            razaoSocial: '',
+            responsavel: '',
+            cnpj: '',
+            email: '',
+            cel: '',
+            tel: '',
+            cep: '',
+            rua: '',
+            numero: '',
+            complemento: '',
+            cidade: '',
             estado: '',
+        },
+        veiculo: {
+            marca: '',
+            modelo: '',
+            placa: '',
+            ano: '',
+            fabricaçao: '',
+            renavam: '',
+            chassi: '',
+            cor: '',
+            preco: '',
+        },
+        vendedor: {
+          nomeVendedor: '',
+          emailVendedor: '',
+          telVendedor: '',
+          celVendedor: '',
+          nascVendedor: '',
+          cpfVendedor: '',
+          cepVendedor: '',
+          ruaVendedor: '',
+          numVendedor: '',
+          compVendedor: '',
+          cidVendedor: '',
+          estVendedor: '',
+        },
+        documentos: {
+            cnh: '',
+            veiculo: '',
+            comprovante: '',
+        },
+        cartao: {    
+            cvc: '',
+            expiry: '',
+            focus: '',
+            name: '',
+            number: '',
         },
     });
    //Mudei função que pega os dados para a main, falta arrumar isso
-    const getAll = (state, step) => {
-        switch (step){    
-        case 'DadosFisica':
-            setData({...data, 
-                cliente: {
-                    nome: state.cliente.fisica.nome ,
-                    email: state.cliente.fisica.email,
-                    tel: state.cliente.fisica.tel,
-                    cel: state.cliente.fisica.cel,
-                    nasc: '',
-                    cpf: '',
-                    rua: '',
-                    numero: '',
-                    complemento: '',
-                    cidade: '',
-                    estado: '',
-                },
-            });
-        }
-    }
-
+    
     function nextPage(count){
         switch (count) {
             case 1:
                 setPage(<Cadastro2 page={count} nextPage={nextPage}/>);
                 break   
             case 2:
-                setPage(<StepperComponent data={data} getAll={(state, step) => getAll( state, step)} page={count} nextPage={nextPage} />) 
+                setPage(<StepperComponent data={data}  page={count} nextPage={nextPage} />) 
                 break
             case 3:
                 setPage(<DadosResumo page={count} nextPage={nextPage} />)

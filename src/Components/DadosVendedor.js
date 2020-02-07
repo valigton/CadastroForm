@@ -21,24 +21,11 @@ const style = makeStyles(theme => ({
 }));
 export default function DadosVendedor(props) {
     const classes = style();
-    const [vendedor, setVendedor] = useState({
-        nomeVendedor: '',
-        emailVendedor: '',
-        telVendedor: '',
-        celVendedor: '',
-        nascVendedor: '',
-        cpfVendedor: '',
-        cepVendedor: '',
-        ruaVendedor: '',
-        numVendedor: '',
-        compVendedor: '',
-        cidVendedor: '',
-        estVendedor: '',
-    });
+    const [vendedor, setVendedor] = useState(props.data.vendedor);
 
     useEffect(() => {
         if(props.handleGetData){
-            props.getData(vendedor, 'DadosVendedor');
+            props.getAll(vendedor, 4);
         }
     }, [props.handleGetData]);
 
@@ -53,14 +40,14 @@ export default function DadosVendedor(props) {
                 <Typography style={{marginLeft: '20px', marginTop: '10px'}} variant="body1">Dados do Vendedor</Typography>
                 <Paper className={classes.paper}>
                     <Grid item >
-                        <TextArea name={"nomeVendedor"} value={vendedor.nomeVendedor} className={classes.text} type="text" label="Nome" variant="outlined"  handleBlur={handleBlur}/>
-                        <TextArea name={"emailVendedor"} value={vendedor.emailVendedor} className={classes.text} type="email" label="E-mail" variant="outlined" handleBlur={handleBlur}/>
-                        <TextArea name={"telVendedor"} value={vendedor.telVendedor} className={classes.text} mask="(99)9999-9999" type="tel" label="Telefone" variant="outlined" handleBlur={handleBlur}></TextArea>
+                        <TextArea name="nomeVendedor" value={vendedor.nomeVendedor} className={classes.text} type="text" label="Nome" variant="outlined"  handleBlur={handleBlur}/>
+                        <TextArea name="emailVendedor" value={vendedor.emailVendedor} className={classes.text} type="email" label="E-mail" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="telVendedor" value={vendedor.telVendedor} className={classes.text} mask="(99)9999-9999" type="tel" label="Telefone" variant="outlined" handleBlur={handleBlur}></TextArea>
                     </Grid>
                     <Grid item >
-                        <TextArea name={"celVendedor"} value={vendedor.celVendedor} className={classes.text} mask="(99)99999-9999" type="tel" label="Celular" variant="outlined"handleBlur={handleBlur}/>
-                        <TextArea name={"nascVendedor"} value={vendedor.nascVendedor} className={classes.text} mask="99/99/9999" type="tel" label="Data de Nascimento" variant="outlined" handleBlur={handleBlur}/>
-                        <TextArea name={"cpfVendedor"} value={vendedor.cpfVendedor} className={classes.text} mask="999.999.999-99" type="text" label="CPF" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="celVendedor" value={vendedor.celVendedor} className={classes.text} mask="(99)99999-9999" type="tel" label="Celular" variant="outlined"handleBlur={handleBlur}/>
+                        <TextArea name="nascVendedor" value={vendedor.nascVendedor} className={classes.text} mask="99/99/9999" type="tel" label="Data de Nascimento" variant="outlined" handleBlur={handleBlur}/>
+                        <TextArea name="cpfVendedor" value={vendedor.cpfVendedor} className={classes.text} mask="999.999.999-99" type="text" label="CPF" variant="outlined" handleBlur={handleBlur}/>
                     </Grid>
                 </Paper>
             </Grid>
@@ -75,9 +62,9 @@ export default function DadosVendedor(props) {
                         <TextArea name="numVendedor" value={vendedor.numEndereco} className={classes.text} mask="99999" type="text" label="Numero"  handleBlur={handleBlur}/> 
                     </Grid>
                     <Grid item >
-                        <TextArea name="compVendedor" value={vendedor.complementoEnredeco} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>
-                        <TextArea name="cidVendedor" value={vendedor.cidadeEndereco} className={classes.text} type="text" label="Cidade"  handleBlur={handleBlur}/>
-                        <ComboBox name="estVendedor" value={vendedor.estadoEndereco} className={classes.text} handleBlur={handleBlur}/>
+                        <TextArea name="compVendedor" value={vendedor.compVendero} className={classes.text} type="text" label="Complemento"  handleBlur={handleBlur}/>
+                        <TextArea name="cidVendedor" value={vendedor.cidVendedor} className={classes.text} type="text" label="Cidade"  handleBlur={handleBlur}/>
+                        <ComboBox name="estVendedor" value={vendedor.estVendedor} className={classes.text} handleBlur={handleBlur}/>
                     </Grid>
                 </Paper>
             </Grid>
