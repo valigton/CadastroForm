@@ -59,17 +59,17 @@ export default function SwitchCadastro(props){
 	    	<Grid item>
 	        	<Container>
 				    <FormControl component="fieldset">
-				     <FormLabel component="legend">Eu sou: </FormLabel>
+				     <FormLabel style={{color: 'orange'}} component="legend">Eu sou: </FormLabel>
 				     <RadioGroup aria-label="position" name="position" value={value} onChange={handleChange} row>
 				        <FormControlLabel
 				          value="fisica"
-				          control={<Radio color="primary" />}
+				          control={<Radio style={{color: 'orange'}} />}
 				          label="Pessoa Fisica"
 				          labelPlacement="end"
 				        />
 				        <FormControlLabel
 				          value="juridica"
-				          control={<Radio color="primary" />}
+				          control={<Radio  style={{color: 'orange'}} />}
 				          label="Pessoa Juridica"
 				          labelPlacement="end"
 				        />

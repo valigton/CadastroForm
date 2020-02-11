@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Stepper, Step, StepLabel, Button } from '@material-ui/core'
+import { Stepper, Step, StepLabel, Button, MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 
 import DadosVeiculo from './dadosVeiculo'
 import DadosDocumentos from './DadosDocumentos'
@@ -20,14 +20,34 @@ const styles = makeStyles(theme => ({
     instruction: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
-        color: theme.color(),
     },
     buttonBox: {
       display: 'flex',
       justifyContent: 'flex-end',
       margin: '10px'
     },
+    stepIcon: {
+      color: 'orange',
+    }
 }));
+
+//Função para trocar a cor dos step icons
+const muiTheme = createMuiTheme({
+    overrides: {
+        MuiStepIcon: {
+            root: {
+                color: 'orange', 
+                '&$active': {
+                    color: 'orange',
+                },
+                '&$completed': {
+                    color: 'green',
+                },
+            },
+        },
+    }
+});
+
 
 export default function StepperComponent(props) {
   const classes = styles();
@@ -170,13 +190,15 @@ export default function StepperComponent(props) {
 
     return (
       <div className={classes.root}>
+      <MuiThemeProvider theme={muiTheme} >
         <Stepper  activeStep={activeStep} alternativeLabel>
           {steps.map(label => (
             <Step key={label} >
-              <StepLabel>{label}</StepLabel>
+              <StepLabel StepIconProps={{classes: { root: classes.stepIcon }}}>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
+      </MuiThemeProvider>
         <div>
             <div>
               <div className={classes.instructions}>{getStepContent(activeStep, getAll, data)}</div>

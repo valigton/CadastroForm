@@ -3,7 +3,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Login from './Components/login';
 import Main from './Components/main';
-import File from './filepond'
 
 export default function Routes() {
     return (
